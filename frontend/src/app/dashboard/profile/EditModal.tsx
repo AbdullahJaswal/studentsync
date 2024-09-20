@@ -1,13 +1,14 @@
-"use client"
-import React, { useState } from 'react';
+"use client";
+
+import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 
 const EditModal = ({ section, skills, achievements, onSave, onClose }) => {
   const [editedSkills, setEditedSkills] = useState(skills);
   const [editedAchievements, setEditedAchievements] = useState(achievements);
-  const [newSkill, setNewSkill] = useState('');
-  const [newAchievement, setNewAchievement] = useState('');
+  const [newSkill, setNewSkill] = useState("");
+  const [newAchievement, setNewAchievement] = useState("");
 
   const handleSkillChange = (index, value) => {
     const updatedSkills = [...editedSkills];
@@ -24,14 +25,14 @@ const EditModal = ({ section, skills, achievements, onSave, onClose }) => {
   const handleAddSkill = () => {
     if (newSkill.trim()) {
       setEditedSkills([...editedSkills, newSkill]);
-      setNewSkill('');
+      setNewSkill("");
     }
   };
 
   const handleAddAchievement = () => {
     if (newAchievement.trim()) {
       setEditedAchievements([...editedAchievements, newAchievement]);
-      setNewAchievement('');
+      setNewAchievement("");
     }
   };
 
@@ -41,14 +42,16 @@ const EditModal = ({ section, skills, achievements, onSave, onClose }) => {
   };
 
   const handleRemoveAchievement = (index) => {
-    const updatedAchievements = editedAchievements.filter((_, i) => i !== index);
+    const updatedAchievements = editedAchievements.filter(
+      (_, i) => i !== index,
+    );
     setEditedAchievements(updatedAchievements);
   };
 
   const handleSave = () => {
-    if (section === 'skills') {
+    if (section === "skills") {
       onSave(editedSkills);
-    } else if (section === 'achievements') {
+    } else if (section === "achievements") {
       onSave(editedAchievements);
     }
     onClose();
@@ -58,10 +61,12 @@ const EditModal = ({ section, skills, achievements, onSave, onClose }) => {
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <Card className="w-96">
         <CardHeader>
-          <CardTitle className="text-xl font-semibold">Edit {section.charAt(0).toUpperCase() + section.slice(1)}</CardTitle>
+          <CardTitle className="text-xl font-semibold">
+            Edit {section.charAt(0).toUpperCase() + section.slice(1)}
+          </CardTitle>
         </CardHeader>
         <CardContent>
-          {section === 'skills' && (
+          {section === "skills" && (
             <>
               {editedSkills.map((skill, index) => (
                 <div key={index} className="flex items-center mb-2">
@@ -71,7 +76,13 @@ const EditModal = ({ section, skills, achievements, onSave, onClose }) => {
                     onChange={(e) => handleSkillChange(index, e.target.value)}
                     className="border rounded p-2 flex-1"
                   />
-                  <Button variant="secondary" onClick={() => handleRemoveSkill(index)} className="ml-2">Remove</Button>
+                  <Button
+                    variant="secondary"
+                    onClick={() => handleRemoveSkill(index)}
+                    className="ml-2"
+                  >
+                    Remove
+                  </Button>
                 </div>
               ))}
               <div className="flex items-center mb-2">
@@ -82,21 +93,35 @@ const EditModal = ({ section, skills, achievements, onSave, onClose }) => {
                   placeholder="Add new skill"
                   className="border rounded p-2 flex-1"
                 />
-                <Button variant="primary" onClick={handleAddSkill} className="ml-2">Add</Button>
+                <Button
+                  variant="primary"
+                  onClick={handleAddSkill}
+                  className="ml-2"
+                >
+                  Add
+                </Button>
               </div>
             </>
           )}
-          {section === 'achievements' && (
+          {section === "achievements" && (
             <>
               {editedAchievements.map((achievement, index) => (
                 <div key={index} className="flex items-center mb-2">
                   <input
                     type="text"
                     value={achievement}
-                    onChange={(e) => handleAchievementChange(index, e.target.value)}
+                    onChange={(e) =>
+                      handleAchievementChange(index, e.target.value)
+                    }
                     className="border rounded p-2 flex-1"
                   />
-                  <Button variant="secondary" onClick={() => handleRemoveAchievement(index)} className="ml-2">Remove</Button>
+                  <Button
+                    variant="secondary"
+                    onClick={() => handleRemoveAchievement(index)}
+                    className="ml-2"
+                  >
+                    Remove
+                  </Button>
                 </div>
               ))}
               <div className="flex items-center mb-2">
@@ -107,14 +132,24 @@ const EditModal = ({ section, skills, achievements, onSave, onClose }) => {
                   placeholder="Add new achievement"
                   className="border rounded p-2 flex-1"
                 />
-                <Button variant="primary" onClick={handleAddAchievement} className="ml-2">Add</Button>
+                <Button
+                  variant="primary"
+                  onClick={handleAddAchievement}
+                  className="ml-2"
+                >
+                  Add
+                </Button>
               </div>
             </>
           )}
         </CardContent>
         <div className="flex justify-end p-4">
-          <Button variant="secondary" onClick={onClose}>Cancel</Button>
-          <Button variant="primary" onClick={handleSave} className="ml-2">Save</Button>
+          <Button variant="secondary" onClick={onClose}>
+            Cancel
+          </Button>
+          <Button variant="primary" onClick={handleSave} className="ml-2">
+            Save
+          </Button>
         </div>
       </Card>
     </div>

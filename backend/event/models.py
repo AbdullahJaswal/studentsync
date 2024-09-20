@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Event(models.Model):
     uid = models.TextField(primary_key=True)
     summary = models.TextField(blank=True)
@@ -14,5 +15,5 @@ class Event(models.Model):
             "uid": self.uid,
             "summary": self.summary,
             "description": self.description,
-            "due_date": self.due_date
+            "due_date": self.due_date,
         }

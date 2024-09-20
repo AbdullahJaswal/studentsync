@@ -1,5 +1,6 @@
-"use client"
-import React, { useState } from 'react';
+"use client";
+
+import React, { useState } from "react";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import {
   Card,
@@ -9,13 +10,22 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import EditModal from './EditModal'; // Import the modal component
+import EditModal from "./EditModal"; // Import the modal component
 
 const Profile = () => {
   const [isModalOpen, setModalOpen] = useState(false);
-  const [editingSection, setEditingSection] = useState('');
-  const [skills, setSkills] = useState(["JavaScript", "React", "SQL", "Data Analysis"]);
-  const [achievements, setAchievements] = useState(["Dean's List - 2022", "Certified Full-Stack Developer", "Hackathon Winner - 2023"]);
+  const [editingSection, setEditingSection] = useState("");
+  const [skills, setSkills] = useState([
+    "JavaScript",
+    "React",
+    "SQL",
+    "Data Analysis",
+  ]);
+  const [achievements, setAchievements] = useState([
+    "Dean's List - 2022",
+    "Certified Full-Stack Developer",
+    "Hackathon Winner - 2023",
+  ]);
 
   const handleEdit = (section) => {
     setEditingSection(section);
@@ -23,9 +33,9 @@ const Profile = () => {
   };
 
   const handleSave = (updatedValues) => {
-    if (editingSection === 'skills') {
+    if (editingSection === "skills") {
       setSkills(updatedValues);
-    } else if (editingSection === 'achievements') {
+    } else if (editingSection === "achievements") {
       setAchievements(updatedValues);
     }
     setModalOpen(false);
@@ -41,15 +51,15 @@ const Profile = () => {
           {/* Profile Picture */}
           <div className="absolute top-16 left-4 rounded-full overflow-hidden border-4 border-white shadow-md">
             <Avatar className="h-24 w-24">
-              <AvatarImage src='img/sampleebike.jpg' />
+              <AvatarImage src="img/sampleebike.jpg" />
             </Avatar>
           </div>
         </CardHeader>
         <CardContent className="mt-8 p-6">
-          <CardTitle className="text-2xl font-semibold">Rohan Mhadgut</CardTitle>
-          <CardDescription className="text-gray-600">
-            MC2037
-          </CardDescription>
+          <CardTitle className="text-2xl font-semibold">
+            Rohan Mhadgut
+          </CardTitle>
+          <CardDescription className="text-gray-600">MC2037</CardDescription>
           <div className="text-sm text-gray-500 mt-2">
             s3998327@student.rmit.edu.au
           </div>
@@ -66,7 +76,9 @@ const Profile = () => {
       <Card className="max-w-4xl mx-auto shadow-md rounded-lg">
         <CardHeader>
           <CardTitle className="text-xl font-semibold">Skills</CardTitle>
-          <Button variant="secondary" onClick={() => handleEdit('skills')}>Edit</Button>
+          <Button variant="secondary" onClick={() => handleEdit("skills")}>
+            Edit
+          </Button>
         </CardHeader>
         <CardContent>
           <ul className="list-disc list-inside space-y-1">
@@ -95,7 +107,12 @@ const Profile = () => {
       <Card className="max-w-4xl mx-auto shadow-md rounded-lg">
         <CardHeader>
           <CardTitle className="text-xl font-semibold">Achievements</CardTitle>
-          <Button variant="secondary" onClick={() => handleEdit('achievements')}>Edit</Button>
+          <Button
+            variant="secondary"
+            onClick={() => handleEdit("achievements")}
+          >
+            Edit
+          </Button>
         </CardHeader>
         <CardContent>
           <ul className="list-disc list-inside space-y-1">
@@ -117,13 +134,16 @@ const Profile = () => {
         <CardContent>
           <ul className="space-y-2">
             <li className="text-sm text-gray-600">
-              <strong>John Doe:</strong> Rohan is an exceptional team player and has strong technical skills.
+              <strong>John Doe:</strong> Rohan is an exceptional team player and
+              has strong technical skills.
             </li>
             <li className="text-sm text-gray-600">
-              <strong>Jane Smith:</strong> He was instrumental in leading our project to success.
+              <strong>Jane Smith:</strong> He was instrumental in leading our
+              project to success.
             </li>
             <li className="text-sm text-gray-600">
-              <strong>Emily Johnson:</strong> His problem-solving abilities are outstanding. A pleasure to work with!
+              <strong>Emily Johnson:</strong> His problem-solving abilities are
+              outstanding. A pleasure to work with!
             </li>
           </ul>
         </CardContent>

@@ -1,12 +1,12 @@
+import requests
 from django.shortcuts import render
+from icalendar import Calendar
 from rest_framework import permissions, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from icalendar import Calendar
-import requests
-from .serializers import EventRequestSerializer, EventSerializer
-from .models import Event
 
+from .models import Event
+from .serializers import EventRequestSerializer, EventSerializer
 
 
 # Create your views here.
@@ -18,7 +18,7 @@ class IcsParser(APIView):
         serializer = EventRequestSerializer(data=request.data)
         if serializer.is_valid():
 
-            ics_url = request.data['url']
+            ics_url = request.data["url"]
             response = requests.get(ics_url)
 
             if response.status_code == 200:
@@ -32,16 +32,18 @@ class IcsParser(APIView):
                 for component in calendar.walk():
 
                     if component.name == "VEVENT":  # VEVENT represents a calendar event
-                        event_uid = component.get('uid')  # Event location
-                        event_summary = component.get('summary')  # Event title
-                        event_description = component.get('description')  # Event description
-                        event_start = component.get('dtstart').dt  # Start date and time
+                        event_uid = component.get("uid")  # Event location
+                        event_summary = component.get("summary")  # Event title
+                        event_description = component.get(
+                            "description"
+                        )  # Event description
+                        event_start = component.get("dtstart").dt  # Start date and time
 
                         event_data = {
-                            'summary': event_summary,
-                            'due_date': event_start,
-                            'description': event_description,
-                            'uid': event_uid,
+                            "summary": event_summary,
+                            "due_date": event_start,
+                            "description": event_description,
+                            "uid": event_uid,
                         }
 
                         event_serializer = EventSerializer(data=event_data)
@@ -60,16 +62,15 @@ class IcsParser(APIView):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
     def get(self, request):
 
         events = Event.objects.all()
         events_serialized = [event.serialize() for event in events]
 
-        return Response({
-            'success': True,
-            'message': 'Calendar Events',
-            'data': {
-                'events': events_serialized
+        return Response(
+            {
+                "success": True,
+                "message": "Calendar Events",
+                "data": {"events": events_serialized},
             }
-        })
+        )

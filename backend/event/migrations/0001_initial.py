@@ -7,17 +7,16 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Event',
+            name="Event",
             fields=[
-                ('uid', models.TextField(primary_key=True, serialize=False)),
-                ('summary', models.TextField(blank=True)),
-                ('description', models.TextField(blank=True)),
-                ('due_date', models.DateField(blank=True)),
+                ("uid", models.TextField(primary_key=True, serialize=False)),
+                ("summary", models.TextField(blank=True)),
+                ("description", models.TextField(blank=True)),
+                ("due_date", models.DateField(blank=True)),
             ],
         ),
     ]
