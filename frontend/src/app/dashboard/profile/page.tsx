@@ -12,7 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import EditModal from "./EditModal";
 
-const Profile = () => {
+export default function Profile() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [editingSection, setEditingSection] = useState("");
   const [skills, setSkills] = useState([
@@ -27,12 +27,12 @@ const Profile = () => {
     "Hackathon Winner - 2023",
   ]);
 
-  const handleEdit = (section) => {
+  const handleEdit = (section: string) => {
     setEditingSection(section);
     setModalOpen(true);
   };
 
-  const handleSave = (updatedValues) => {
+  const handleSave = (updatedValues: string[]) => {
     if (editingSection === "skills") {
       setSkills(updatedValues);
     } else if (editingSection === "achievements") {
@@ -161,6 +161,4 @@ const Profile = () => {
       )}
     </div>
   );
-};
-
-export default Profile;
+}

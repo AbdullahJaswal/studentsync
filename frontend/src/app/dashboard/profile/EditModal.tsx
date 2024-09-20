@@ -4,19 +4,33 @@ import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
-const EditModal = ({ section, skills, achievements, onSave, onClose }) => {
+type EditModalProps = {
+  section: string;
+  skills: string[];
+  achievements: string[];
+  onSave: (data: string[]) => void;
+  onClose: () => void;
+};
+
+export default function EditModal({
+  section,
+  skills,
+  achievements,
+  onSave,
+  onClose,
+}: EditModalProps) {
   const [editedSkills, setEditedSkills] = useState(skills);
   const [editedAchievements, setEditedAchievements] = useState(achievements);
   const [newSkill, setNewSkill] = useState("");
   const [newAchievement, setNewAchievement] = useState("");
 
-  const handleSkillChange = (index, value) => {
+  const handleSkillChange = (index: number, value: string) => {
     const updatedSkills = [...editedSkills];
     updatedSkills[index] = value;
     setEditedSkills(updatedSkills);
   };
 
-  const handleAchievementChange = (index, value) => {
+  const handleAchievementChange = (index: number, value: string) => {
     const updatedAchievements = [...editedAchievements];
     updatedAchievements[index] = value;
     setEditedAchievements(updatedAchievements);
@@ -36,12 +50,12 @@ const EditModal = ({ section, skills, achievements, onSave, onClose }) => {
     }
   };
 
-  const handleRemoveSkill = (index) => {
+  const handleRemoveSkill = (index: number) => {
     const updatedSkills = editedSkills.filter((_, i) => i !== index);
     setEditedSkills(updatedSkills);
   };
 
-  const handleRemoveAchievement = (index) => {
+  const handleRemoveAchievement = (index: number) => {
     const updatedAchievements = editedAchievements.filter(
       (_, i) => i !== index,
     );
@@ -94,7 +108,7 @@ const EditModal = ({ section, skills, achievements, onSave, onClose }) => {
                   className="border rounded p-2 flex-1"
                 />
                 <Button
-                  variant="primary"
+                  variant="default"
                   onClick={handleAddSkill}
                   className="ml-2"
                 >
@@ -133,7 +147,7 @@ const EditModal = ({ section, skills, achievements, onSave, onClose }) => {
                   className="border rounded p-2 flex-1"
                 />
                 <Button
-                  variant="primary"
+                  variant="default"
                   onClick={handleAddAchievement}
                   className="ml-2"
                 >
@@ -147,13 +161,11 @@ const EditModal = ({ section, skills, achievements, onSave, onClose }) => {
           <Button variant="secondary" onClick={onClose}>
             Cancel
           </Button>
-          <Button variant="primary" onClick={handleSave} className="ml-2">
+          <Button variant="default" onClick={handleSave} className="ml-2">
             Save
           </Button>
         </div>
       </Card>
     </div>
   );
-};
-
-export default EditModal;
+}

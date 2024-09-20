@@ -8,7 +8,7 @@ class EventSerializer(serializers.ModelSerializer):
         model = Event
         fields = [
             "uid",
-            "summary",
+            "title",
             "description",
             "due_date",
         ]  # Add all the fields you want to include

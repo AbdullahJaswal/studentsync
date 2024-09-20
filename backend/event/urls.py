@@ -1,10 +1,10 @@
 from django.urls import path
 
-from .views import IcsParser
+from .views import EventView
 
 app_name = "event"
 
 urlpatterns = [
     # Event
-    path("icsparser/", IcsParser.as_view(), name="icsparser"),
+    path("", EventView.as_view(), name="event-view"),
 ]
