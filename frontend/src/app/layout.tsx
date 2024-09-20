@@ -23,7 +23,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <section className="mx-auto flex min-h-screen flex-col justify-between">
             <Navbar />
 
-            <main className="mx-auto mb-auto flex max-w-7xl justify-center overflow-y-auto">{children}</main>
+            <main className="mb-auto flex max-w-7xl justify-center overflow-y-auto">{children}</main>
 
             <Footer />
           </section>
