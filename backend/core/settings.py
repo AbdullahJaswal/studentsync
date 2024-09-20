@@ -58,9 +58,11 @@ INSTALLED_APPS = [
 
     # Apps
     "user",
+    "event",
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -177,6 +179,10 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 REST_AUTH = {
     "USE_JWT": True,
     "JWT_AUTH_HTTPONLY": False,
@@ -190,7 +196,7 @@ REST_AUTH = {
 }
 
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(hours=1),
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=30),
     "ALGORITHM": "HS256",
     "SIGNING_KEY": SECRET_KEY,
@@ -199,7 +205,7 @@ SIMPLE_JWT = {
     "USER_ID_FIELD": "id",
     "USER_ID_CLAIM": "user_id",
     "JTI_CLAIM": "jti",
-    "SLIDING_TOKEN_LIFETIME": timedelta(hours=1),
+    "SLIDING_TOKEN_LIFETIME": timedelta(days=1),
     "SLIDING_TOKEN_REFRESH_LIFETIME": timedelta(days=30),
 }
 

@@ -4,8 +4,9 @@ import {Button} from "@/components/ui/button";
 import {Sheet, SheetContent, SheetTrigger} from "@/components/ui/sheet";
 import {ModeToggle} from "@/components/theme-selector";
 import Logo from "@/components/logo";
+import LogoutButton from "@/components/auth/logout-button";
 
-export function Navbar() {
+export function AuthNavbar() {
   return (
     <header
       className="sticky top-0 flex h-16 flex-row items-center justify-between gap-4 border-b px-4 bg-background md:px-6">
@@ -21,9 +22,6 @@ export function Navbar() {
           </Link>
           <Link href="/about" className="transition-colors text-muted-foreground hover:text-foreground">
             About
-          </Link>
-          <Link href="/profile" className="text-muted-foreground hover:text-foreground">
-                My Profile
           </Link>
         </nav>
 
@@ -46,16 +44,14 @@ export function Navbar() {
               <Link href="/about" className="text-muted-foreground hover:text-foreground">
                 About
               </Link>
-              <Link href="/profile" className="text-muted-foreground hover:text-foreground">
-                My Profile
-              </Link>
             </nav>
           </SheetContent>
         </Sheet>
       </div>
 
-      <div>
+      <div className="flex flex-row items-center gap-2">
         <ModeToggle />
+        <LogoutButton />
       </div>
     </header>
   );

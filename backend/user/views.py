@@ -15,3 +15,6 @@ class DeleteAccount(APIView):
             {"result": "user deleted"},
             status=status.HTTP_200_OK,
         )
+
+
+
