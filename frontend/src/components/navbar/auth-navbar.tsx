@@ -19,19 +19,13 @@ export function AuthNavbar() {
             <span className="sr-only">StudentSync</span>
           </Link>
           <Link
-            href="/"
-            className="transition-colors text-foreground hover:text-foreground"
+            href="/dashboard"
+            className="text-muted-foreground hover:text-foreground"
           >
-            Home
+            Dashboard
           </Link>
           <Link
-            href="/about"
-            className="transition-colors text-muted-foreground hover:text-foreground"
-          >
-            About
-          </Link>
-          <Link
-            href="/profile"
+            href="/dashboard/profile"
             className="text-muted-foreground hover:text-foreground"
           >
             My Profile
@@ -52,23 +46,20 @@ export function AuthNavbar() {
           <SheetContent side="left">
             <nav className="grid gap-6 text-lg font-medium">
               <Link
-                href="/"
+                href="/dashboard"
                 className="flex items-center gap-2 text-lg font-semibold"
               >
                 <Logo className="h-6 w-6" />
                 <span className="sr-only">StudentSync</span>
               </Link>
-              <Link href="/" className="hover:text-foreground">
-                Home
-              </Link>
               <Link
-                href="/about"
+                href="/"
                 className="text-muted-foreground hover:text-foreground"
               >
-                About
+                Dashboard
               </Link>
               <Link
-                href="/profile"
+                href="/dashboard/profile"
                 className="text-muted-foreground hover:text-foreground"
               >
                 My Profile

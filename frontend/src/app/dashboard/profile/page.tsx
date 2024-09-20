@@ -10,7 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import EditModal from "./EditModal"; // Import the modal component
+import EditModal from "./EditModal";
 
 const Profile = () => {
   const [isModalOpen, setModalOpen] = useState(false);
