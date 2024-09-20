@@ -22,6 +22,9 @@ export function Navbar() {
           <Link href="/about" className="transition-colors text-muted-foreground hover:text-foreground">
             About
           </Link>
+          <Link href="/profile" className="text-muted-foreground hover:text-foreground">
+                My Profile
+          </Link>
         </nav>
 
         <Sheet>
@@ -42,6 +45,9 @@ export function Navbar() {
               </Link>
               <Link href="/about" className="text-muted-foreground hover:text-foreground">
                 About
+              </Link>
+              <Link href="/profile" className="text-muted-foreground hover:text-foreground">
+                My Profile
               </Link>
             </nav>
           </SheetContent>
