@@ -14,6 +14,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 import os
 
 from dj_rest_auth.views import PasswordResetConfirmView, PasswordResetView
@@ -39,13 +40,11 @@ url_prefix = "backend-api/" if settings.DEBUG is False else ""
 urlpatterns = [
     # Health Check
     path(f"{url_prefix}", HealthView.as_view(), name="health"),
-
     # Admin
     path(
         f"{url_prefix}adminofthissite/" if settings.DEBUG is False else "admin/",
         admin.site.urls,
     ),
-
     # Auth
     path(f"{url_prefix}auth/", include("dj_rest_auth.urls")),
     path(f"{url_prefix}auth/registration/", include("dj_rest_auth.registration.urls")),
@@ -61,9 +60,9 @@ urlpatterns = [
     ),
     path(f"{url_prefix}auth/google/", GoogleLogin.as_view(), name="google_login"),
     re_path(r"^accounts/", include("allauth.urls"), name="socialaccount_signup"),
-
     # Apps
     path(f"{url_prefix}user/", include("user.urls")),
+    path(f"{url_prefix}event/", include("event.urls")),
 ]
 
 if settings.DEBUG is True:
@@ -74,7 +73,7 @@ if settings.DEBUG is True:
     schema_view = get_schema_view(
         openapi.Info(
             title=os.environ.get("APP_TITLE"),
-            default_version='v1',
+            default_version="v1",
             license=openapi.License(name="BSD License"),
         ),
         public=True,
@@ -84,8 +83,20 @@ if settings.DEBUG is True:
     urlpatterns.extend(
         [
             path("__debug__/", include("debug_toolbar.urls")),
-            path('swagger<format>/', schema_view.without_ui(cache_timeout=0), name='schema-json'),
-            path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-            path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+            path(
+                "swagger<format>/",
+                schema_view.without_ui(cache_timeout=0),
+                name="schema-json",
+            ),
+            path(
+                "swagger/",
+                schema_view.with_ui("swagger", cache_timeout=0),
+                name="schema-swagger-ui",
+            ),
+            path(
+                "redoc/",
+                schema_view.with_ui("redoc", cache_timeout=0),
+                name="schema-redoc",
+            ),
         ]
     )

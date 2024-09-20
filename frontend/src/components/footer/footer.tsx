@@ -1,8 +1,8 @@
 export default function Footer() {
   return (
-    <footer className="p-4 text-center text-xs text-muted-foreground">
+    <footer className="p-4 text-center text-xs text-muted-foreground border-t">
       <aside>
-        <p>Copyright © {new Date().getFullYear()} - All right reserved by Hackathon Ltd</p>
+        <p>StudentSync</p>
       </aside>
     </footer>
   );
