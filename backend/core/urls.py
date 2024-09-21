@@ -63,6 +63,7 @@ urlpatterns = [
     # Apps
     path(f"{url_prefix}user/", include("user.urls")),
     path(f"{url_prefix}event/", include("event.urls")),
+    path(f"{url_prefix}post/", include("post.urls"))
 ]
 
 if settings.DEBUG is True:
