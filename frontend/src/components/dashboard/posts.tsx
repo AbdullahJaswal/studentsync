@@ -20,8 +20,9 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useSession } from "next-auth/react";
 
-export default async function DashboardPosts() {
+export default function DashboardPosts() {
   const [cardsData, setCardsData] = useState([
     {
       title: "Looking for group members for Software testing assignment 2",
@@ -57,6 +58,10 @@ export default async function DashboardPosts() {
     setNewPostDescription("");
   };
 
+  const { data: session } = useSession();
+  const username  = session?.user?.email?.split('@')[0]
+  //console.log(session?.user?.email);
+
   return (
     <div className="flex container p-4 max-w-full mt-4">
       {/* Profile Section */}
@@ -72,10 +77,10 @@ export default async function DashboardPosts() {
           </div>
           <CardContent className="mt-8 p-6">
             <CardTitle className="text-2xl font-semibold">
-              Rohan Mhadgut
+              {username}
             </CardTitle>
             <CardDescription className="text-gray-600">
-              Master of IT student at RMIT University
+            {session?.user?.email}
             </CardDescription>
             <div className="text-sm text-gray-500 mt-2">
               Docklands, Victoria, Australia
