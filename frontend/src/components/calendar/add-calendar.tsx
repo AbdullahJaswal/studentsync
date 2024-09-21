@@ -15,6 +15,9 @@ import { Input } from "@/components/ui/input";
 import { Loader2 } from "lucide-react";
 import { useSession } from "next-auth/react";
 
+import getConfig from "next/config";
+const { publicRuntimeConfig } = getConfig();
+
 export default function AddCalendarClient() {
   const { data: session } = useSession();
 
@@ -32,7 +35,7 @@ export default function AddCalendarClient() {
     if (session) {
       try {
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/event/`,
+          `${publicRuntimeConfig.NEXT_PUBLIC_URL}/event/`,
           {
             method: "POST",
             headers: {
