@@ -17,12 +17,6 @@ repos:
       - id: black
         files: \.py$
         types: [file]
-  - repo: https://github.com/PyCQA/isort
-    rev: 5.13.2
-    hooks:
-      - id: isort
-        files: \.py$
-        types: [file]
   - repo: https://github.com/pre-commit/mirrors-eslint
     rev: v9.7.0
     hooks:
