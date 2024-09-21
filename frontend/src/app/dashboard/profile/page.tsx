@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import EditModal from "./EditModal";
+import { useSession } from "next-auth/react";
 
 export default function Profile() {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -49,7 +50,8 @@ export default function Profile() {
     }
     setModalOpen(false);
   };
-
+  const { data: session } = useSession();
+  const username  = session?.user?.email?.split('@')[0]
   return (
     <div className="container mx-auto p-4 max-w-4xl">
       {/* Profile Card */}
@@ -66,11 +68,11 @@ export default function Profile() {
         </CardHeader>
         <CardContent className="mt-8 p-6">
           <CardTitle className="text-2xl font-semibold">
-            Rohan Mhadgut
+            {username}
           </CardTitle>
           <CardDescription className="text-gray-600">MC2037</CardDescription>
           <div className="text-sm text-gray-500 mt-2">
-            s3998327@student.rmit.edu.au
+            {session?.user?.email}
           </div>
           <div className="text-blue-600 mt-2">Looking for group member</div>
           {/* Action Buttons */}
