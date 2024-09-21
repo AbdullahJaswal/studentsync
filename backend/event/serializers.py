@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Event
+from .models import Event, UserCalendar
 
 
 class EventSerializer(serializers.ModelSerializer):
@@ -27,3 +27,11 @@ class EventSerializer(serializers.ModelSerializer):
 
 class EventRequestSerializer(serializers.Serializer):
     url = serializers.URLField()
+
+
+class UserCalendarSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserCalendar
+        fields = [
+            "url",
+        ]
