@@ -66,15 +66,12 @@ export default function DashboardPosts() {
         throw new Error("Access token not available");
       }
 
-      const response = await fetch(
-        `https://studentsync.abdullahjaswal.com/backend-api/event/`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${session.access}`,
-          },
+      const response = await fetch(`${process.env.CLIENT_URL}/event/`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session.access}`,
         },
-      );
+      });
 
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
@@ -93,15 +90,12 @@ export default function DashboardPosts() {
         throw new Error("Access token not available");
       }
 
-      const response = await fetch(
-        `https://studentsync.abdullahjaswal.com/backend-api/post/`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${session.access}`,
-          },
+      const response = await fetch(`${process.env.CLIENT_URL}/post/`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session.access}`,
         },
-      );
+      });
 
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
@@ -133,7 +127,7 @@ export default function DashboardPosts() {
 
     try {
       const response = await fetch(
-        `https://studentsync.abdullahjaswal.com/backend-api/post/${postId}/comment/`,
+        `${process.env.CLIENT_URL}/post/${postId}/comment/`,
         {
           method: "POST",
           headers: {
@@ -169,17 +163,14 @@ export default function DashboardPosts() {
     };
 
     try {
-      const response = await fetch(
-        `https://studentsync.abdullahjaswal.com/backend-api/post/`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${session.access}`,
-          },
-          body: JSON.stringify(newPost),
+      const response = await fetch(`${process.env.CLIENT_URL}/post/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session.access}`,
         },
-      );
+        body: JSON.stringify(newPost),
+      });
 
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
@@ -201,7 +192,7 @@ export default function DashboardPosts() {
   const handleInterestClick = async (postId: number) => {
     try {
       const response = await fetch(
-        `https://studentsync.abdullahjaswal.com/backend-api/post/${postId}/interest/`,
+        `${process.env.CLIENT_URL}/post/${postId}/interest/`,
         {
           method: "POST",
           headers: {
