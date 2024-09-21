@@ -28,7 +28,7 @@ services:
         ports:
             - "8000:8000"
         env_file:
-            - ./backend/.env.dev
+            - ./backend/.env.prod
         networks:
             - staging
         depends_on:
