@@ -10,8 +10,6 @@ from .models import Event
 from .serializers import EventRequestSerializer
 from user.models import User
 
-from user.serializers import CustomUserDetailsSerializer
-
 
 # Create your views here.
 class EventView(APIView):
