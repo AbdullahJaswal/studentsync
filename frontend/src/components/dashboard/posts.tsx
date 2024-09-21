@@ -66,15 +66,12 @@ export default function DashboardPosts() {
         throw new Error("Access token not available");
       }
 
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/event/`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${session.access}`,
-          },
+      const response = await fetch(`${process.env.CLIENT_URL}/event/`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session.access}`,
         },
-      );
+      });
 
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
@@ -93,7 +90,7 @@ export default function DashboardPosts() {
         throw new Error("Access token not available");
       }
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/post/`, {
+      const response = await fetch(`${process.env.CLIENT_URL}/post/`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${session.access}`,
@@ -130,7 +127,7 @@ export default function DashboardPosts() {
 
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/post/${postId}/comment/`,
+        `${process.env.CLIENT_URL}/post/${postId}/comment/`,
         {
           method: "POST",
           headers: {
@@ -166,7 +163,7 @@ export default function DashboardPosts() {
     };
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/post/`, {
+      const response = await fetch(`${process.env.CLIENT_URL}/post/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -195,7 +192,7 @@ export default function DashboardPosts() {
   const handleInterestClick = async (postId: number) => {
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/post/${postId}/interest/`,
+        `${process.env.CLIENT_URL}/post/${postId}/interest/`,
         {
           method: "POST",
           headers: {

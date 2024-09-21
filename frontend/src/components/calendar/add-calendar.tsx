@@ -31,19 +31,16 @@ export default function AddCalendarClient() {
 
     if (session) {
       try {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/event/`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${session.access}`,
-            },
-            body: JSON.stringify({
-              url: calendarUrl,
-            }),
+        const response = await fetch(`${process.env.CLIENT_URL}/event/`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${session.access}`,
           },
-        );
+          body: JSON.stringify({
+            url: calendarUrl,
+          }),
+        });
 
         if (response.ok) {
           setSuccess(true);
