@@ -27,6 +27,12 @@ export default function Profile() {
     "Hackathon Winner - 2023",
   ]);
 
+  const [reviews,setReviews] = useState([
+    "John Doe: Rohan is an exceptional team player and has strong technical skills",
+"Jane Smith: He was instrumental in leading our project to success",
+"Emily Johnson: His problem-solving abilities are outstanding. A pleasure to work with"
+  ]);
+
   const handleEdit = (section: string) => {
     setEditingSection(section);
     setModalOpen(true);
@@ -37,6 +43,9 @@ export default function Profile() {
       setSkills(updatedValues);
     } else if (editingSection === "achievements") {
       setAchievements(updatedValues);
+    }
+    else if(editingSection == "reviews"){
+      setReviews(updatedValues)
     }
     setModalOpen(false);
   };
@@ -51,7 +60,7 @@ export default function Profile() {
           {/* Profile Picture */}
           <div className="absolute top-16 left-4 rounded-full overflow-hidden border-4 border-white shadow-md">
             <Avatar className="h-24 w-24">
-              <AvatarImage src="img/sampleebike.jpg" />
+              <AvatarImage src="../img/sampleebike.jpg" />
             </Avatar>
           </div>
         </CardHeader>
@@ -124,27 +133,21 @@ export default function Profile() {
       </Card>
 
       {/* Reviews Section */}
-      <Card className="shadow-md rounded-lg">
-        <CardHeader className="flex items-center">
+      <Card className="max-w-4xl mx-auto shadow-md rounded-lg">
+        <CardHeader>
           <CardTitle className="text-xl font-semibold">Reviews</CardTitle>
-          <Button variant="secondary" size="sm" className="ml-auto">
-            Add Review
+          <Button
+            variant="secondary"
+            onClick={() => handleEdit("reviews")}
+          >
+            Edit
           </Button>
         </CardHeader>
         <CardContent>
-          <ul className="space-y-2">
-            <li className="text-sm text-gray-600">
-              <strong>John Doe:</strong> Rohan is an exceptional team player and
-              has strong technical skills.
-            </li>
-            <li className="text-sm text-gray-600">
-              <strong>Jane Smith:</strong> He was instrumental in leading our
-              project to success.
-            </li>
-            <li className="text-sm text-gray-600">
-              <strong>Emily Johnson:</strong> His problem-solving abilities are
-              outstanding. A pleasure to work with!
-            </li>
+          <ul className="list-disc list-inside space-y-1">
+            {reviews.map((review, index) => (
+              <li key={index}>{review}</li>
+            ))}
           </ul>
         </CardContent>
       </Card>
@@ -155,6 +158,7 @@ export default function Profile() {
           section={editingSection}
           skills={skills}
           achievements={achievements}
+          reviews={reviews}
           onSave={handleSave}
           onClose={() => setModalOpen(false)}
         />
