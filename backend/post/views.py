@@ -4,13 +4,17 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .models import Comment, Post
-from .serializers import CommentPostSerializer, CommentSerializer, PostSerializer
+from .serializers import (
+    CommentPostSerializer,
+    CommentSerializer,
+    PostSerializer,
+    PostCreateSerializer,
+)
 
 
 # Create your views here.
 class PostListCreateView(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
-    serializer_class = PostSerializer
 
     def get_queryset(self):
         events_ids = Event.objects.filter(
@@ -25,6 +29,11 @@ class PostListCreateView(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+    def get_serializer_class(self):
+        if self.request.method == "POST":
+            return PostCreateSerializer
+        return PostSerializer
 
 
 class CommentListCreateView(generics.ListCreateAPIView):
@@ -64,7 +73,9 @@ class AddPostInterestView(APIView):
         if post.event.uid in events_ids:
             if self.request.user not in post.interested_users.all():
                 post.interested_users.add(self.request.user)
+            else:
+                post.interested_users.remove(self.request.user)
 
-                return Response(status=status.HTTP_200_OK)
+            return Response(status=status.HTTP_200_OK)
 
         return Response(status=status.HTTP_403_FORBIDDEN)
