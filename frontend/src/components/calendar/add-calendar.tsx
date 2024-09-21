@@ -31,16 +31,19 @@ export default function AddCalendarClient() {
 
     if (session) {
       try {
-        const response = await fetch(`${process.env.CLIENT_URL}/event/`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${session.access}`,
+        const response = await fetch(
+          `https://studentsync.abdullahjaswal.com/backend-api/event/`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${session.access}`,
+            },
+            body: JSON.stringify({
+              url: calendarUrl,
+            }),
           },
-          body: JSON.stringify({
-            url: calendarUrl,
-          }),
-        });
+        );
 
         if (response.ok) {
           setSuccess(true);

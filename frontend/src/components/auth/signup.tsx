@@ -31,7 +31,7 @@ export default function SignupClient() {
 
     try {
       const response = await fetch(
-        `${process.env.CLIENT_URL}/auth/registration/`,
+        `https://studentsync.abdullahjaswal.com/backend-api/auth/registration/`,
         {
           method: "POST",
           headers: {
