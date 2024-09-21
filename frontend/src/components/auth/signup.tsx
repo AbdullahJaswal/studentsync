@@ -1,11 +1,11 @@
 "use client";
 
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-import {Button} from "@/components/ui/button";
-import {Input} from "@/components/ui/input";
-import {Label} from "@/components/ui/label";
-import {Loader2} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Loader2 } from "lucide-react";
 
 export default function SignupClient() {
   const [firstName, setFirstName] = useState("");
@@ -14,33 +14,38 @@ export default function SignupClient() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<{ email?: string; password1?: string }>({});
+  const [error, setError] = useState<{ email?: string; password1?: string }>(
+    {},
+  );
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError({});
 
     if (password !== confirmPassword) {
-      setError({password1: "Passwords do not match"});
+      setError({ password1: "Passwords do not match" });
       return;
     }
 
     setLoading(true);
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/registration/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}auth/registration/`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            first_name: firstName,
+            last_name: lastName,
+            email: email,
+            password1: password,
+            password2: confirmPassword,
+          }),
         },
-        body: JSON.stringify({
-          first_name: firstName,
-          last_name: lastName,
-          email: email,
-          password1: password,
-          password2: confirmPassword,
-        }),
-      });
+      );
 
       const data = await response.json();
 
@@ -55,7 +60,7 @@ export default function SignupClient() {
         window.location.href = "/";
       }
     } catch {
-      setError({password1: "An error occurred. Please try again."});
+      setError({ password1: "An error occurred. Please try again." });
       setLoading(false);
     }
   };
