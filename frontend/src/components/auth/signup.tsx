@@ -31,7 +31,7 @@ export default function SignupClient() {
 
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}auth/registration/`,
+        `${process.env.NEXT_PUBLIC_API_URL}/auth/registration/`,
         {
           method: "POST",
           headers: {
