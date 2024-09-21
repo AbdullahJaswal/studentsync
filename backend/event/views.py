@@ -8,6 +8,9 @@ from rest_framework.views import APIView
 
 from .models import Event
 from .serializers import EventRequestSerializer
+from user.models import User
+
+from user.serializers import CustomUserDetailsSerializer
 
 
 # Create your views here.
@@ -97,5 +100,32 @@ class EventView(APIView):
                 "success": True,
                 "message": "Calendar Events",
                 "data": {"events": events_serialized},
+            }
+        )
+
+
+
+# Create your views here.
+class EventUserView(APIView):
+
+    permission_classes = [permissions.AllowAny]
+
+    def get(self, request):
+
+        event_id = request.GET.get("event_id")
+
+        users = User.objects.filter(events=event_id).distinct()
+
+        users_data = [{'id': user.id, 'first_name': user.first_name, "last_name": user.last_name, "email": user.email} for user in users]
+
+        print(users)
+
+        return Response(
+            {
+                "success": True,
+                "data": {
+                    "event_id": event_id,
+                    'users': users_data
+                }
             }
         )
