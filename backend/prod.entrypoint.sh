@@ -22,4 +22,4 @@ echo "Invalidating Cache"
 python manage.py invalidate_cachalot
 
 echo "Starting Server"
-python manage.py runserver 0.0.0.0:8000
+gunicorn core.wsgi:application --bind 0.0.0.0:8000 --log-file - --access-logfile - --workers 3

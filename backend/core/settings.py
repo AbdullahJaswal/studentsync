@@ -269,14 +269,17 @@ if DEBUG:
         }
     }
 else:
-    ALLOWED_HOSTS = []
-    CORS_ALLOWED_ORIGINS = []
+    ALLOWED_HOSTS = ["studentsync.abdullahjaswal.com"]
+
+    CORS_ALLOWED_ORIGINS = [
+        "https://studentsync.abdullahjaswal.com",
+    ]
 
     REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = [
         "rest_framework.renderers.JSONRenderer"
     ]
 
-    # SESSION_COOKIE_SECURE = True
-    # CSRF_COOKIE_SECURE = True
-    # SECURE_BROWSER_XSS_FILTER = True
-    # SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
