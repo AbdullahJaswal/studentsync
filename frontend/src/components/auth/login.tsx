@@ -1,12 +1,12 @@
 "use client";
 
-import React, {useState} from "react";
-import {signIn} from "next-auth/react";
+import React, { useState } from "react";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
-import {Button} from "@/components/ui/button";
-import {Input} from "@/components/ui/input";
-import {Label} from "@/components/ui/label";
-import {Loader2} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Loader2 } from "lucide-react";
 
 export default function LoginClient() {
   const [email, setEmail] = useState("");
@@ -72,9 +72,7 @@ export default function LoginClient() {
         </div>
 
         {error && (
-          <div className="text-red-500 text-sm text-center">
-            {error}
-          </div>
+          <div className="text-red-500 text-sm text-center">{error}</div>
         )}
 
         <Button type="submit" className="w-full" disabled={loading}>
@@ -85,13 +83,6 @@ export default function LoginClient() {
           ) : (
             "Login"
           )}
-        </Button>
-        <Button
-          variant="outline"
-          className="w-full"
-          onClick={() => signIn("google")}
-        >
-          Login with Google
         </Button>
       </div>
       <div className="mt-4 text-center text-sm">
