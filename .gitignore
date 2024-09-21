@@ -534,4 +534,6 @@ cython_debug/
 ### Custom
 # except .env.dev
 !.env.dev
+!.env.prod
 !.env.development
+!.env.production
