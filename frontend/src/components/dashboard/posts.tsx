@@ -21,7 +21,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
-export default async function DashboardPosts() {
+export default function DashboardPosts() {
   const [cardsData, setCardsData] = useState([
     {
       title: "Looking for group members for Software testing assignment 2",

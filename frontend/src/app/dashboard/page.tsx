@@ -7,6 +7,6 @@ export const metadata: Metadata = {
     "StudentSync is a platform for students to manage their academic life.",
 };
 
-export default async function Dashboard() {
+export default function Dashboard() {
   return <DashboardPosts />;
 }
