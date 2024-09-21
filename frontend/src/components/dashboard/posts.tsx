@@ -32,6 +32,16 @@ import {
 import { InterestedUsersAccordion } from "@/components/dashboard/interested-user-accordion";
 import Moment from "react-moment";
 
+declare module "next-auth" {
+  interface Session {
+    user: {
+      first_name: string;
+      last_name: string;
+      email: string;
+    };
+  }
+}
+
 export default function DashboardPosts() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newPostTitle, setNewPostTitle] = useState("");
@@ -39,7 +49,7 @@ export default function DashboardPosts() {
 
   const { data: session } = useSession();
 
-  const [events, setEvents] = useState<any>([]);
+  const [events, setEvents] = useState<{ uid: string; title: string }[]>([]);
   const [posts, setPosts] = useState<Post[]>([]);
   const [commentText, setCommentText] = useState<{ [postId: string]: string }>(
     {},
@@ -182,7 +192,7 @@ export default function DashboardPosts() {
     }
   };
 
-  const handleInterestClick = async (postId) => {
+  const handleInterestClick = async (postId: number) => {
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/post/${postId}/interest/`,
@@ -212,7 +222,7 @@ export default function DashboardPosts() {
         <Card className="shadow-md rounded-lg">
           <CardContent className="p-6">
             <CardTitle className="text-2xl font-semibold">
-              {session?.user?.first_name} {session?.user?.last_name}
+              {session?.user?.first_name as string} {session?.user?.last_name}
             </CardTitle>
             <CardDescription className="text-gray-600">
               {session?.user?.email}
@@ -361,7 +371,7 @@ export default function DashboardPosts() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
-                {events.map((event: any, index: any) => (
+                {events.map((event: { uid: string; title: string }, index) => (
                   <DropdownMenuItem
                     key={index}
                     onClick={() => setSelectedEvent(event)}
