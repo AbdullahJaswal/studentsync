@@ -12,7 +12,6 @@ from django.contrib.auth.forms import PasswordResetForm
 from django.core.exceptions import ValidationError as DjangoValidationError
 from django.utils.encoding import force_str
 from django.utils.http import urlsafe_base64_decode as uid_decoder
-
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
@@ -89,7 +88,6 @@ class CustomRegisterSerializer(RegisterSerializer):
         fields = (
             "first_name",
             "last_name",
-            "phone_number",
             "email",
             "password1",
             "password2",
@@ -105,4 +103,14 @@ class CustomUserDetailsSerializer(UserDetailsSerializer):
             "first_name",
             "last_name",
             "last_login",
+        )
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = (
+            "email",
+            "first_name",
+            "last_name",
         )
