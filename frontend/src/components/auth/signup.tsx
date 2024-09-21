@@ -7,9 +7,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Loader2 } from "lucide-react";
 
-import getConfig from "next/config";
-const { publicRuntimeConfig } = getConfig();
-
 export default function SignupClient() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -34,7 +31,7 @@ export default function SignupClient() {
 
     try {
       const response = await fetch(
-        `${publicRuntimeConfig.NEXT_PUBLIC_URL}/auth/registration/`,
+        `${process.env.NEXT_PUBLIC_API_URL}/auth/registration/`,
         {
           method: "POST",
           headers: {

@@ -32,9 +32,6 @@ import {
 import { InterestedUsersAccordion } from "@/components/dashboard/interested-user-accordion";
 import Moment from "react-moment";
 
-import getConfig from "next/config";
-const { publicRuntimeConfig } = getConfig();
-
 declare module "next-auth" {
   interface Session {
     user: {
@@ -70,7 +67,7 @@ export default function DashboardPosts() {
       }
 
       const response = await fetch(
-        `${publicRuntimeConfig.NEXT_PUBLIC_URL}/event/`,
+        `${process.env.NEXT_PUBLIC_API_URL}/event/`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -96,15 +93,12 @@ export default function DashboardPosts() {
         throw new Error("Access token not available");
       }
 
-      const response = await fetch(
-        `${publicRuntimeConfig.NEXT_PUBLIC_URL}/post/`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${session.access}`,
-          },
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/post/`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session.access}`,
         },
-      );
+      });
 
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
@@ -136,7 +130,7 @@ export default function DashboardPosts() {
 
     try {
       const response = await fetch(
-        `${publicRuntimeConfig.NEXT_PUBLIC_URL}/post/${postId}/comment/`,
+        `${process.env.NEXT_PUBLIC_API_URL}/post/${postId}/comment/`,
         {
           method: "POST",
           headers: {
@@ -172,17 +166,14 @@ export default function DashboardPosts() {
     };
 
     try {
-      const response = await fetch(
-        `${publicRuntimeConfig.NEXT_PUBLIC_URL}/post/`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${session.access}`,
-          },
-          body: JSON.stringify(newPost),
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/post/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session.access}`,
         },
-      );
+        body: JSON.stringify(newPost),
+      });
 
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
@@ -204,7 +195,7 @@ export default function DashboardPosts() {
   const handleInterestClick = async (postId: number) => {
     try {
       const response = await fetch(
-        `${publicRuntimeConfig.NEXT_PUBLIC_URL}/post/${postId}/interest/`,
+        `${process.env.NEXT_PUBLIC_API_URL}/post/${postId}/interest/`,
         {
           method: "POST",
           headers: {
