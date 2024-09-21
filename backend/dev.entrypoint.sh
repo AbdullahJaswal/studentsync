@@ -21,5 +21,7 @@ python manage.py migrate --no-input
 echo "Invalidating Cache"
 python manage.py invalidate_cachalot
 
+echo "DEBUG=$DEBUG"
+
 echo "Starting Server"
 python manage.py runserver 0.0.0.0:8000
