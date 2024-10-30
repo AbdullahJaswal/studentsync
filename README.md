@@ -1,6 +1,6 @@
 # StudentSync
 
-***Submission for RMIT Hackathon (by SWITCH x CSIT)***
+***Submission for RMIT Hackathon (by SWITCH x CSIT) (Completed in 24 hours)***
 
 ### What it does
 
