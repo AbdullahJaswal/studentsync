@@ -2,6 +2,10 @@
 
 ***Submission for RMIT Hackathon (by SWITCH x CSIT) (Completed in 24 hours)***
 
+[RMIT Hackathon (by SWITCH x CSIT)](https://switch-x-csit-hackathon.devpost.com/)
+
+[StudentSync Submission](https://devpost.com/software/studentsync)
+
 ### What it does
 
 StudentSync allows RMIT students to seamlessly find and form effective teams for group assignments. Students can:
@@ -15,6 +19,5 @@ StudentSync was developed using a React/Next.js frontend for a dynamic and respo
 ### Instructions
 
 - Install Docker
-- `cd` to project folder from your terminal
 - Run `docker compose -f dev.compose.yml up` in the terminal
 - The website is accessible on `http://localhost:3000`
